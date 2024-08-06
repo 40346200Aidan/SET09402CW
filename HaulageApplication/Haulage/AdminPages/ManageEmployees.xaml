@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Haulage.AdminPages.ManageCustomerPage"
-             Title="ManageCustomerPage"
-    xmlns:viewModel ="clr-namespace:Haulage.ViewModels">
+    x:Class="Haulage.ManageEmployees"
+             Title="ManageEmployees"
+             xmlns:local ="clr-namespace:Haulage"
+    xmlns:viewModel ="clr-namespace:Haulage.viewModel">
+
     <ContentPage.BindingContext>
-        <viewModel:CustomerViewModel/>
+        <viewModel:DriverViewModel/>
     </ContentPage.BindingContext>
     <VerticalStackLayout>
         <Label 
-            Text="Welcome Administrator Here You Can Manage Haulage Customers"
+            Text="Welcome Administrator Here You Can Manage Haulage Employees"
             FontSize="Medium"
             VerticalOptions="Center" 
             HorizontalOptions="Center" />
@@ -40,9 +42,11 @@
                              Text ="Role"/>
                 <Label Grid.Row="0" Grid.Column="5" TextColor="White" Grid.RowSpan="2"
                              Text ="Address"/>
+                <Label Grid.Row="0" Grid.Column="6" TextColor="White" Grid.RowSpan="2"
+                             Text ="Qualification"/>
             </Grid>
 
-            <CollectionView x:Name="CustomerCollectionView" ItemsSource="{Binding Customers}">
+            <CollectionView Loaded="Collection_Loaded" x:Name="DriversCollectionView" ItemsSource="{Binding Drivers}">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <ContentView>
@@ -84,6 +88,10 @@
                                        Grid.Column="5"
                                        Text="{Binding Address}"
                                        FontAttributes="Italic"/>
+                                    <Label Grid.Row="1" TextColor="White" Grid.RowSpan="3"
+                                      Grid.Column="6"
+                                      Text="{Binding Qualification}"
+                                      FontAttributes="Italic"/>
                                 </Grid>
                             </Frame>
                         </ContentView>
@@ -95,18 +103,18 @@
             <Button
 x:Name="AddEmployee"
 Text="Add Employee Record" 
-Clicked="AddEmployee_Clicked"
+Clicked="AddEmployee_Clicked" 
 Padding="10"
 BorderColor="#9D00FF"/>
             <Button
-x:Name="DeleteCustomer"
+x:Name="DeleteEmployee"
 HeightRequest="10"
-Text="Delete Customer Record" 
-Clicked="DeleteCustomer_Clicked" 
+Text="Delete Employee Record" 
+Clicked="DeleteEmployee_Clicked" 
 Padding="10"
 HorizontalOptions="End" 
 BorderColor="#9D00FF"/>
-            <Entry x:Name="EntryCustomerId" Placeholder="Id to delete" />
+            <Entry x:Name="entryUserId" Placeholder="Id to delete" />
         </HorizontalStackLayout>
     </VerticalStackLayout>
 </ContentPage>

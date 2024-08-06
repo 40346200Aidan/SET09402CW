@@ -9,7 +9,7 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Collections.ObjectModel;
 
-namespace Haulage.viewModels
+namespace Haulage.viewModel
 {
     public class VehicleViewModel
     {

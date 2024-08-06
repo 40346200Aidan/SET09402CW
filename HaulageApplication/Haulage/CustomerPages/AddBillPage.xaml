@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Haulage.AddBillPage"
+             Title="AddBill">
+    <VerticalStackLayout>
+        <StackLayout>
+            <Grid  BackgroundColor="DarkGrey" Margin="30,20,30,10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="0.9*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.5*"/>
+                    <ColumnDefinition Width="0.5*"/>
+                    <ColumnDefinition Width="0.5*"/>
+                    <ColumnDefinition Width="0.5*"/>
+                    <ColumnDefinition Width="0.5*"/>
+                    <ColumnDefinition Width="0.5*"/>
+                    <ColumnDefinition Width="0.5*"/>
+                </Grid.ColumnDefinitions>
+                <Label Grid.Row="0" Grid.Column="0" TextColor="White" Grid.RowSpan="2"
+                     Text ="BillId"/>
+                <Label Grid.Row="0" Grid.Column="1" TextColor="White" Grid.RowSpan="2"
+                     Text ="Fullname"/>
+                <Label Grid.Row="0" Grid.Column="2" TextColor="White" Grid.RowSpan="2"
+                     Text ="Email"/>
+                <Label Grid.Row="0" Grid.Column="3" TextColor="White" Grid.RowSpan="2"
+                     Text ="Item"/>
+                <Label Grid.Row="0" Grid.Column="4" TextColor="White" Grid.RowSpan="2"
+                     Text ="ItemDesc"/>
+                <Label Grid.Row="0" Grid.Column="5" TextColor="White" Grid.RowSpan="2"
+                     Text ="Cost"/>
+                <Label Grid.Row="0" Grid.Column="6" TextColor="White" Grid.RowSpan="2"
+                     Text ="Paid"/>
+
+                <Entry
+                    x:Name="BillIdEntry"
+                    Placeholder="BillId"
+                    Grid.Row="1"
+                    Grid.Column="0"
+                    Keyboard="Numeric">
+                </Entry>
+                <Entry
+                    x:Name="FullnameEntry"
+                    Placeholder="Fullname"
+                    Grid.Row="1"
+                    Grid.Column="1">
+                </Entry>
+                <Entry
+                    x:Name="EmailEntry"
+                    Placeholder="Email"
+                    Grid.Row="1"
+                    Grid.Column="2">
+                </Entry>
+                <Entry
+                    x:Name="ItemEntry"
+                    Placeholder="Item"
+                    Grid.Row="1"
+                    Grid.Column="3">
+                </Entry>
+                <Entry
+                    x:Name="ItemDescEntry"
+                    Placeholder="Item Description"
+                    Grid.Row="1"
+                    Grid.Column="4">
+                </Entry>
+                <Entry
+                    x:Name="CostEntry"
+                    Placeholder="Cost"
+                    Grid.Row="1"
+                    Grid.Column="5">
+                </Entry>
+                <Entry
+                    x:Name="PaidEntry"
+                    Placeholder="Paid"
+                    Grid.Row="1"
+                    Grid.Column="6">
+                </Entry>
+
+            </Grid>
+            <CollectionView x:Name="BillingCollectionView" ItemsSource="{Binding Bills}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <ContentView>
+                            <Frame BackgroundColor="#ac99ea" Margin="30,15,30,0">
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="auto"/>
+                                        <RowDefinition Height="auto"/>
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="0.5*" />
+                                        <ColumnDefinition Width="0.5*"/>
+                                        <ColumnDefinition Width="0.5*"/>
+                                        <ColumnDefinition Width="0.5*" />
+                                        <ColumnDefinition Width="0.5*"/>
+                                        <ColumnDefinition Width="0.5*"/>
+                                        <ColumnDefinition Width="0.5*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Label  TextColor="White" Grid.RowSpan="2" 
+                               Grid.Row="1" 
+                               Grid.Column="0"
+                               Text="{Binding BillId}"
+                               FontAttributes="Bold"/>
+
+                                    <Label  TextColor="White" Grid.RowSpan="2" Grid.Row="1" 
+                                Grid.Column="1"
+                                Text="{Binding Fullname}"
+                                FontAttributes="Bold"/>
+
+                                    <Label Grid.Row="1" TextColor="White" 
+                               Grid.RowSpan="2"
+                               Grid.Column="2"
+                               Text="{Binding Email}"
+                               FontAttributes="Italic"/>
+                                    
+                                    <Label  TextColor="White" Grid.RowSpan="2" 
+                               Grid.Row="1" 
+                               Grid.Column="3"
+                               Text="{Binding Item}"
+                               FontAttributes="Bold"/>
+
+                                    <Label  TextColor="White" Grid.RowSpan="2" 
+                               Grid.Row="1" 
+                               Grid.Column="4"
+                               Text="{Binding ItemDesc}"
+                               FontAttributes="Bold"/>
+
+                                    <Label Grid.Row="1" TextColor="White" Grid.RowSpan="2"
+                               Grid.Column="5"
+                               Text="{Binding Cost}"
+                               FontAttributes="Italic"/>
+
+                                    <Label Grid.Row="1" TextColor="White" Grid.RowSpan="2"
+                               Grid.Column="6"
+                               Text="{Binding Paid}"
+                               FontAttributes="Italic"/>
+
+                                </Grid>
+                            </Frame>
+                        </ContentView>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </StackLayout>
+
+        <HorizontalStackLayout>
+            <Button
+x:Name="SaveBill"
+Text="Save Bill Record"
+Clicked="SaveBill_Clicked"
+Padding="10"
+BorderColor="#9D00FF"/>
+
+        </HorizontalStackLayout>
+    </VerticalStackLayout>
+</ContentPage>

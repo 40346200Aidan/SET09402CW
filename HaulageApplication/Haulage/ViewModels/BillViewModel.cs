@@ -4,25 +4,28 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Haulage.BaseClasses.Accounting;
-using Haulage.Models;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Collections.ObjectModel;
+using Haulage.DatabaseExecutionServices;
+using Haulage.BaseClasses.BillingHandler;
 
-namespace Haulage.ViewModels
+namespace Haulage.BillviewModel
 {
-    public class CustomerViewModel : INotifyPropertyChanged
+    public class BillViewModel : INotifyPropertyChanged
     {
-        public ObservableCollection<Customer> Customers { get; set; }
-        public CustomerViewModel()
+        public ObservableCollection<Billing>? Bills { get; set; }
+        public BillViewModel() 
         {
-            Customers = new ObservableCollection<Customer>();
-            var customerObjects = CustomerModel.Customers;
-            foreach (var customer in customerObjects)
+            Bills = new ObservableCollection<Billing>();
+            var BillingObjects = BillModel.Bills;
+            foreach (var BillObject in BillingObjects)
             {
-                Customers.Add(customer);
+                Bills.Add(BillObject);
             }
+
         }
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         protected void OnPropertyChanged(string propertyName)

@@ -5,41 +5,39 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Haulage.BaseClasses;
-using Haulage.BaseClasses.Accounting;
+using Haulage.BaseClasses.BillingHandler;
 
 
 namespace Haulage.DatabaseExecutionServices
 {
-    public static class DriverExecutionService
+    public static class BillExecutionService
     {
-        public static List<Driver> GetDrivers()
+        public static List<Billing> GetBills()
         {
-            var drivers = new List<Driver>();
-            var sql = "SELECT [UserId]" +
+            var bills = new List<Billing>();
+            var sql = "SELECT [BillId]" +
                 ",[Fullname]" +
                 ",[Email]" +
-                ",[PhoneNumber]" +
-                ",[Role]" +
-                ",[Address]" +
-                ",[Qualification]" +
-                $"FROM [User] WHERE [Role] = '{Role.driver.ToString()}' ;";
+                ",[Item]" +
+                ",[ItemDesc]" +
+                ",[Cost]" +
+                ",[Paid]" +
+                "FROM [Bill];";
 
             using (var connection = new SQLiteConnection(DatabaseSetup.GetDatabasePath()))
             {
                 var command = new SQLite.SQLiteCommand(connection);
                 command.CommandText = sql;
-                drivers = command.ExecuteQuery<Driver>();
+                bills = command.ExecuteQuery<Billing>();
             }
 
-
-
-
-            return drivers;
+            return bills;
         }
-        public static void DeleteDriver(int UserId)
+
+        public static void DeleteBill(int BillId)
         {
-            var drivers = new List<Driver>();
-            var sql = $"DELETE FROM [User] WHERE [UserId] = {UserId};";
+            var bills = new List<Billing>();
+            var sql = $"DELETE FROM [Bill] WHERE [BillId] = {BillId}";
 
 
             using (var connection = new SQLiteConnection(DatabaseSetup.GetDatabasePath()))
@@ -50,10 +48,9 @@ namespace Haulage.DatabaseExecutionServices
             }
 
         }
-
-        public static void SaveDriver(Driver driver)
+        public static void SaveBill(Billing billing)
         {
-            var sql = $"INSERT INTO [User] ([UserId], [Fullname], [Email], [PhoneNumber], [Role], [Address], [Qualification]) VALUES ('{driver.UserId}','{driver.Fullname}', '{driver.Email}', '{driver.PhoneNumber}', '{driver.UserRole}','{driver.Address}','{driver.Qualification}');";
+            var sql = $"INSERT INTO [Bill] ([BillId], [Fullname], [Email], [Item], [ItemDesc], [Cost], [Paid]) VALUES ('{billing.BillId}','{billing.Fullname}', '{billing.Email}', '{billing.Item}', '{billing.ItemDesc}', '{billing.Cost}', '{billing.Paid}');";
 
             using (var connection = new SQLiteConnection(DatabaseSetup.GetDatabasePath()))
             {
@@ -66,5 +63,4 @@ namespace Haulage.DatabaseExecutionServices
         }
 
     }
-
 }

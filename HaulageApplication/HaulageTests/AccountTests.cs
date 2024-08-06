@@ -8,8 +8,6 @@ using Haulage.BaseClasses.BillingHandler;
 
 namespace HaulageTests
 {
-    //[CollectionDefinition("AccountTests", DisableParallelization = true)]
-    [CollectionDefinition("DatabaseTests", DisableParallelization = true)]
     public class AccountTests
     {
         [Fact]

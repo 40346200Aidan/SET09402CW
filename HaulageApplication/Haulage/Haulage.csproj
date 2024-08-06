@@ -98,38 +98,25 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Compile Update="AdminPages\ManageEmployeesPage.xaml.cs">
-	    <DependentUpon>ManageEmployeesPage.xaml</DependentUpon>
-	  </Compile>
-	  <Compile Update="CustomerPages\TrackItemPage.xaml.cs">
-	    <DependentUpon>TrackItemPage.xaml</DependentUpon>
-	  </Compile>
-	</ItemGroup>
-	<ItemGroup>
 	  <MauiXaml Update="AdminPages\AddEmployee.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="AdminPages\ManageCustomerPage.xaml">
+	  <MauiXaml Update="AdminPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="CustomerPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="CustomerPages\TrackItemPage.xaml">
+	  <MauiXaml Update="CustomerPages\CustomerPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="DriverPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="DriverPages\DriverRaiseEventPage.xaml">
-	  	<Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="AdminPages\ManageEmployeesPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
 	  <MauiXaml Update="Team.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="Models\" />
 	</ItemGroup>
 
 </Project>

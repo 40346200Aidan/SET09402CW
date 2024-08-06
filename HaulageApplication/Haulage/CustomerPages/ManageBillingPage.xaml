@@ -1,52 +1,52 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    x:Class="Haulage.ManageEmployeesPage"
-             Title="ManageEmployeesPage"
+             x:Class="Haulage.CustomerPages.ManageBillingPage"
+             Title="ManageBillingPage"
              xmlns:local ="clr-namespace:Haulage"
-    xmlns:viewModel ="clr-namespace:Haulage.viewModels">
+    xmlns:viewModel ="clr-namespace:Haulage.BillviewModel">
 
     <ContentPage.BindingContext>
-        <viewModel:DriverViewModel/>
+        <viewModel:BillViewModel/>
     </ContentPage.BindingContext>
     <VerticalStackLayout>
         <Label 
-            Text="Welcome Administrator Here You Can Manage Haulage Employees"
+            Text="Welcome Customer, Here You Can Manage your billing history"
             FontSize="Medium"
-            VerticalOptions="Center" 
+            VerticalOptions="Start" 
             HorizontalOptions="Center" />
         <StackLayout>
-            <Grid  BackgroundColor="DarkGrey" Margin="30,100,100,10">
+            <Grid  BackgroundColor="DarkGrey" Margin="10,50,100,10">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="1*"/>
                     <RowDefinition Height="0.9*"/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="1.5*"/>
-                    <ColumnDefinition Width="1.9*"/>
-                    <ColumnDefinition Width="1.4*"/>
-                    <ColumnDefinition Width="1.7*"/>
-                    <ColumnDefinition Width="1.5*"/>
+                    <ColumnDefinition Width="2.0*"/>
                     <ColumnDefinition Width="1.0*"/>
-                    <ColumnDefinition Width="1.*"/>
+                    <ColumnDefinition Width="1.5*"/>
+                    <ColumnDefinition Width="2.0*"/>
+                    <ColumnDefinition Width="1.0*"/>
+                    <ColumnDefinition Width="1.0*"/>
                 </Grid.ColumnDefinitions>
                 <Label Grid.Row="0" Grid.Column="0" TextColor="White" Grid.RowSpan="2"
-                             Text ="UserId"/>
+                             Text ="BillId"/>
                 <Label Grid.Row="0" Grid.Column="1" TextColor="White" Grid.RowSpan="2"
                              Text ="Fullname"/>
                 <Label Grid.Row="0" Grid.Column="2" TextColor="White" Grid.RowSpan="2"
                              Text ="Email"/>
                 <Label Grid.Row="0" Grid.Column="3" TextColor="White" Grid.RowSpan="2"
-                             Text ="PhoneNumber"/>
+                             Text ="Item"/>
                 <Label Grid.Row="0" Grid.Column="4" TextColor="White" Grid.RowSpan="2"
-                             Text ="Role"/>
+                             Text ="ItemDesc"/>
                 <Label Grid.Row="0" Grid.Column="5" TextColor="White" Grid.RowSpan="2"
-                             Text ="Address"/>
+                             Text ="Cost"/>
                 <Label Grid.Row="0" Grid.Column="6" TextColor="White" Grid.RowSpan="2"
-                             Text ="Qualification"/>
+                             Text ="Paid"/>
             </Grid>
 
-            <CollectionView Loaded="Collection_Loaded" x:Name="DriversCollectionView" ItemsSource="{Binding Drivers}">
+            <CollectionView x:Name="BillingCollectionView" ItemsSource= "{Binding Bills}" >
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <ContentView>
@@ -57,41 +57,50 @@
                                         <RowDefinition Height="auto"/>
                                     </Grid.RowDefinitions>
                                     <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="1.5*" />
+                                        <ColumnDefinition Width="2.0*"/>
                                         <ColumnDefinition Width="1.5*"/>
-                                        <ColumnDefinition Width="1.9*"/>
+                                        <ColumnDefinition Width="1.5*" />
+                                        <ColumnDefinition Width="2.3*"/>
+                                        <ColumnDefinition Width="1.0*"/>
                                         <ColumnDefinition Width="1.5*"/>
-                                        <ColumnDefinition Width="1.7*"/>
-                                        <ColumnDefinition Width="1.5*"/>
-                                        <ColumnDefinition Width="1.5*"/>
-                                        <ColumnDefinition Width="1.1*"/>
                                     </Grid.ColumnDefinitions>
-                                    <Label  TextColor="White" Grid.RowSpan="2" Grid.Row="1" Grid.Column="0"
-                                       Text="{Binding UserId}"
-                                       FontAttributes="Bold"/>
+                                    
+                                    <Label  TextColor="White" Grid.RowSpan="2" Grid.Row="1" 
+                                       Grid.Column="0"
+                                       Text="{Binding BillId}"
+                                       FontAttributes="Italic"/>
+
                                     <Label Grid.Row="1" TextColor="White" Grid.RowSpan="2"
                                        Grid.Column="1"
                                        Text="{Binding Fullname}"
                                        FontAttributes="Italic"/>
+
                                     <Label Grid.Row="1" TextColor="White" Grid.RowSpan="2"
                                        Grid.Column="2"
                                        Text="{Binding Email}"
                                        FontAttributes="Italic"/>
-                                    <Label Grid.Row="1" TextColor="White" Grid.RowSpan="2"
+                                    
+                                    <Label  TextColor="White" Grid.RowSpan="2" Grid.Row="1" 
                                        Grid.Column="3"
-                                       Text="{Binding PhoneNumber}"
+                                       Text="{Binding Item}"
                                        FontAttributes="Italic"/>
+
                                     <Label Grid.Row="1" TextColor="White" Grid.RowSpan="2"
                                        Grid.Column="4"
-                                       Text="{Binding UserRole}"
+                                       Text="{Binding ItemDesc}"
                                        FontAttributes="Italic"/>
+
                                     <Label Grid.Row="1" TextColor="White" Grid.RowSpan="2"
                                        Grid.Column="5"
-                                       Text="{Binding Address}"
+                                       Text="{Binding Cost}"
                                        FontAttributes="Italic"/>
-                                    <Label Grid.Row="1" TextColor="White" Grid.RowSpan="3"
+
+                                    <Label Grid.Row="1" TextColor="White" Grid.RowSpan="2"
                                       Grid.Column="6"
-                                      Text="{Binding Qualification}"
+                                      Text="{Binding Paid}"
                                       FontAttributes="Italic"/>
+
                                 </Grid>
                             </Frame>
                         </ContentView>
@@ -101,20 +110,25 @@
         </StackLayout>
         <HorizontalStackLayout>
             <Button
-x:Name="AddEmployee"
-Text="Add Employee Record" 
-Clicked="AddEmployee_Clicked"
-Padding="10"
-BorderColor="#9D00FF"/>
+    x:Name="AddBills"
+    HeightRequest="10"
+    Text="Add Bills" 
+    SemanticProperties.Hint="Add Bills"
+    Clicked="AddBills_Clicked"
+    Padding="10"
+    HorizontalOptions="End" 
+    BorderColor="#9D00FF"/>
             <Button
-x:Name="DeleteEmployee"
-HeightRequest="10"
-Text="Delete Employee Record" 
-Clicked="DeleteEmployee_Clicked" 
-Padding="10"
-HorizontalOptions="End" 
-BorderColor="#9D00FF"/>
-            <Entry x:Name="entryUserId" Placeholder="Id to delete" />
+    x:Name="DeleteBill"
+    HeightRequest="10"
+    Text="Delete Bill" 
+    Clicked="DeleteBill_Clicked"
+    Padding="10"
+    HorizontalOptions="End" 
+    BorderColor="#9D00FF"/>
+            <Entry x:Name="EntryBillId" Placeholder="BillId to delete" />
         </HorizontalStackLayout>
     </VerticalStackLayout>
 </ContentPage>
+             
+           

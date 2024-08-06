@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local ="clr-namespace:Haulage"
              x:Class="Haulage.ManageVehiclesPage"
-             xmlns:viewModel ="clr-namespace:Haulage.viewModels"
+             xmlns:viewModel ="clr-namespace:Haulage.viewModel"
              Title="ManageVehiclesPage"
              Shell.NavBarIsVisible="False"
              BackgroundColor="White">

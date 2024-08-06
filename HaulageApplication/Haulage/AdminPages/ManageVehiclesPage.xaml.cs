@@ -1,6 +1,6 @@
 using Haulage.BaseClasses.Accounting;
 using Haulage.DatabaseExecutionServices;
-using Haulage.viewModels;
+using Haulage.viewModel;
 using Microsoft.Maui.Controls;
 using System.Collections.ObjectModel;
 using System;

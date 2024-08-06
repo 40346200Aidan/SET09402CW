@@ -1,6 +1,6 @@
 using Haulage.BaseClasses.Accounting;
 using Haulage.DatabaseExecutionServices;
-using Haulage.viewModels;
+using Haulage.viewModel;
 using SQLite;
 using System.Runtime.CompilerServices;
 
@@ -8,12 +8,22 @@ using System.Runtime.CompilerServices;
 
 namespace Haulage;
 
-public partial class ManageEmployeesPage : ContentPage
+public partial class ManageEmployees : ContentPage
 {
-	public ManageEmployeesPage()
+	public ManageEmployees()
 	{
         InitializeComponent();
+
+        Button AddEmployee = FindByName("AddEmployee") as Button;
+        AddEmployee.Clicked += async (sender, args) => { await Navigation.PushAsync(new AddEmployee()); };
+
     }
+
+    private void AddEmployee_Clicked(object sender, EventArgs e)
+    {
+
+    }
+
 
     private void DeleteEmployee_Clicked(object sender, EventArgs e)
     {
@@ -45,11 +55,6 @@ public partial class ManageEmployeesPage : ContentPage
         }
 
 
-    }
-
-    private async void AddEmployee_Clicked(object sender, EventArgs e)
-    {
-        await Navigation.PushAsync(new AddEmployee());
     }
 
     private void Collection_Loaded(object sender, EventArgs e)
